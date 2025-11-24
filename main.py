@@ -23,6 +23,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Simple root route for healthcheck
+@app.get("/")
+async def root():
+    return {"status": "ok"}
+
 # Attach guardrails to the existing agent instance
 base_agent = portfolio_agent
 base_agent.input_guardrails.append(portfolio_input_checker)
